@@ -59,6 +59,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     
+    var wordsToType = document.querySelector("span[words]").getAttribute("words").split(','), 
+            typer =  document.querySelector("span[words]"), 
+            typingSpeed = (parseInt(typer.getAttribute('typing-speed')) || 70), 
+            typingDelay = (parseInt(typer.getAttribute('typing-delay')) || 700);
+    
+    var currentWordIndex = 0, currentCharacterIndex = 0; 
+
+    function type(){
+
+        var wordToType = wordsToType[currentWordIndex%wordsToType.length];
+
+        if(currentCharacterIndex < wordToType.length){
+            typer.innerHTML += wordToType[currentCharacterIndex++];
+            setTimeout(type, typingSpeed);
+        }else{
+
+            setTimeout(erase, typingDelay);
+        }
+
+    }
+    function erase(){
+        var wordToType = wordsToType[currentWordIndex%wordsToType.length]; 
+        if(currentCharacterIndex >0){
+            typer.innerHTML = wordToType.substr(0, --currentCharacterIndex -1);
+            setTimeout(erase, typingSpeed);
+        }else{
+
+            currentWordIndex++; 
+            setTimeout(type, typingDelay);
+        }
+
+    }
+
+    window.onload = function(){
+        type(); 
+    }
+    
     // Initial setup and re-run on resize
     setupDesktopHover();
     let resizeTimer;
@@ -79,4 +116,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // faq section script
+    const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item => {
+  const btn = item.querySelector(".faq-question");
+
+  btn.addEventListener("click", () => {
+    // close other items
+    faqItems.forEach(i => {
+      if (i !== item) {
+        i.classList.remove("active");
+        i.querySelector(".icon").textContent = "+";
+      }
+    });
+
+    // toggle current item
+    item.classList.toggle("active");
+
+    const icon = item.querySelector(".icon");
+    icon.textContent = item.classList.contains("active") ? "–" : "+";
+  });
+});
+
+        const track = document.querySelector('.slider-track');
+        const slides = Array.from(document.querySelectorAll('.testimonial-slide'));
+        const nextButton = document.getElementById('next-slide');
+        const prevButton = document.getElementById('prev-slide');
+        const slideCount = slides.length;
+        let currentSlide = 0;
+
+        // Function to update the slider position
+        const updateSlider = () => {
+            // Calculate the distance to move (currentSlide * -100% of the container width)
+            const offset = currentSlide * -100;
+            track.style.transform = `translateX(${offset}%)`;
+        };
+
+        // Next slide logic
+        nextButton.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slideCount; // Loop back to 0
+            updateSlider();
+        });
+
+        // Previous slide logic
+        prevButton.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slideCount) % slideCount; // Loop back to the last slide
+            updateSlider();
+        });
+
+        // Initialize the slider position
+        updateSlider(); 
 });
