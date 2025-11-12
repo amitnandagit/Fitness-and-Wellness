@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isDesktop = () => window.innerWidth > 992;
     
-    // --- 1. Mobile Menu (Hamburger) Toggle ---
+    // 1. Mobile Menu (Hamburger) Toggle
     if (menuToggle) {
         menuToggle.addEventListener('click', () => {
             desktopMenu.classList.toggle('active');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. Dropdown Functionality (Click/Hover) ---
+    // 2. Dropdown Functionality (Click/Hover)
     const handleDropdownInteraction = (e) => {
         const parentItem = e.currentTarget.closest('.nav-item');
         
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', handleDropdownInteraction);
     });
 
-    // --- 3. Desktop Hover and Click Cleanup ---
+    // 3. Desktop Hover and Click Cleanup
     const setupDesktopHover = () => {
         navItems.forEach(item => {
             // Remove previous listeners to avoid duplicates
@@ -59,43 +59,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     
-    var wordsToType = document.querySelector("span[words]").getAttribute("words").split(','), 
-            typer =  document.querySelector("span[words]"), 
-            typingSpeed = (parseInt(typer.getAttribute('typing-speed')) || 70), 
-            typingDelay = (parseInt(typer.getAttribute('typing-delay')) || 700);
-    
-    var currentWordIndex = 0, currentCharacterIndex = 0; 
+    // --- 4. Typing Animation ---
+    var typerElement = document.querySelector("span[words]");
+    if (typerElement) {
+        var wordsToType = typerElement.getAttribute("words").split(','), 
+            typingSpeed = (parseInt(typerElement.getAttribute('typing-speed')) || 70), 
+            typingDelay = (parseInt(typerElement.getAttribute('typing-delay')) || 700);
+        
+        var currentWordIndex = 0, currentCharacterIndex = 0; 
 
-    function type(){
+        function type(){
+            var wordToType = wordsToType[currentWordIndex % wordsToType.length].trim();
 
-        var wordToType = wordsToType[currentWordIndex%wordsToType.length];
-
-        if(currentCharacterIndex < wordToType.length){
-            typer.innerHTML += wordToType[currentCharacterIndex++];
-            setTimeout(type, typingSpeed);
-        }else{
-
-            setTimeout(erase, typingDelay);
+            if(currentCharacterIndex < wordToType.length){
+                typerElement.innerHTML += wordToType[currentCharacterIndex++];
+                setTimeout(type, typingSpeed);
+            } else {
+                setTimeout(erase, typingDelay);
+            }
+        }
+        
+        function erase(){
+            var wordToType = wordsToType[currentWordIndex % wordsToType.length].trim(); 
+            if(currentCharacterIndex > 0){
+                // Corrected erasure logic
+                typerElement.innerHTML = wordToType.substr(0, --currentCharacterIndex); 
+                setTimeout(erase, typingSpeed);
+            } else {
+                currentWordIndex++; 
+                setTimeout(type, typingDelay);
+            }
         }
 
-    }
-    function erase(){
-        var wordToType = wordsToType[currentWordIndex%wordsToType.length]; 
-        if(currentCharacterIndex >0){
-            typer.innerHTML = wordToType.substr(0, --currentCharacterIndex -1);
-            setTimeout(erase, typingSpeed);
-        }else{
-
-            currentWordIndex++; 
-            setTimeout(type, typingDelay);
-        }
-
+        // Start the typing animation
+        setTimeout(type, 500); // Small initial delay
     }
 
-    window.onload = function(){
-        type(); 
-    }
-    
     // Initial setup and re-run on resize
     setupDesktopHover();
     let resizeTimer;
@@ -104,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resizeTimer = setTimeout(setupDesktopHover, 250);
     });
 
-    // --- 4. Close Dropdowns when clicking outside (Desktop) ---
+    // 5. Close Dropdowns when clicking outside (Desktop)
     document.addEventListener('click', (e) => {
         const isMenuClick = e.target.closest('.nav-menu-desktop');
         const isToggleClick = e.target.closest('.menu-button');
@@ -116,43 +115,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // faq section script
+    // --- 6. FAQ Section Script ---
     const faqItems = document.querySelectorAll(".faq-item");
 
-faqItems.forEach(item => {
-  const btn = item.querySelector(".faq-question");
+    faqItems.forEach(item => {
+      const btn = item.querySelector(".faq-question");
 
-  btn.addEventListener("click", () => {
-    // close other items
-    faqItems.forEach(i => {
-      if (i !== item) {
-        i.classList.remove("active");
-        i.querySelector(".icon").textContent = "+";
-      }
+      btn.addEventListener("click", () => {
+        // close other items
+        faqItems.forEach(i => {
+          if (i !== item) {
+            i.classList.remove("active");
+            i.querySelector(".icon").textContent = "+";
+          }
+        });
+
+        // toggle current item
+        item.classList.toggle("active");
+
+        const icon = item.querySelector(".icon");
+        icon.textContent = item.classList.contains("active") ? "–" : "+";
+      });
     });
 
-    // toggle current item
-    item.classList.toggle("active");
+    // --- 7. Testimonial Slider Script (Your existing code) ---
+    const track = document.querySelector('.slider-track');
+    const slides = Array.from(document.querySelectorAll('.testimonial-slide'));
+    const nextButton = document.getElementById('next-slide');
+    const prevButton = document.getElementById('prev-slide');
+    const slideCount = slides.length;
+    let currentSlide = 0;
 
-    const icon = item.querySelector(".icon");
-    icon.textContent = item.classList.contains("active") ? "–" : "+";
-  });
-});
-
-        const track = document.querySelector('.slider-track');
-        const slides = Array.from(document.querySelectorAll('.testimonial-slide'));
-        const nextButton = document.getElementById('next-slide');
-        const prevButton = document.getElementById('prev-slide');
-        const slideCount = slides.length;
-        let currentSlide = 0;
-
-        // Function to update the slider position
-        const updateSlider = () => {
-            // Calculate the distance to move (currentSlide * -100% of the container width)
+    // Function to update the slider position
+    const updateSlider = () => {
+        if (track) {
             const offset = currentSlide * -100;
             track.style.transform = `translateX(${offset}%)`;
-        };
+        }
+    };
 
+    if (nextButton && prevButton) {
         // Next slide logic
         nextButton.addEventListener('click', () => {
             currentSlide = (currentSlide + 1) % slideCount; // Loop back to 0
@@ -167,4 +169,38 @@ faqItems.forEach(item => {
 
         // Initialize the slider position
         updateSlider(); 
+    }
+    
+// --- 8. Hero Image Slider Functionality (FADE EFFECT) ---
+    const heroSliderContainer = document.querySelector('.hero-slider-mockup');
+    if (heroSliderContainer) {
+        // Find all image elements within the container
+        const heroSlides = heroSliderContainer.querySelectorAll('img');
+        const totalSlides = heroSlides.length;
+        let currentHeroSlideIndex = 0;
+        const slideInterval = 2000; // 5 seconds interval
+
+        if (totalSlides > 1) {
+            
+            // Function to update which slide is visible
+            const updateHeroSlider = () => {
+                // 1. Remove 'active' class from all slides
+                heroSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+
+                // 2. Add 'active' class to the current slide to trigger the fade in via CSS
+                heroSlides[currentHeroSlideIndex].classList.add('active'); 
+
+                // 3. Increment the index for the next cycle, looping back to 0
+                currentHeroSlideIndex = (currentHeroSlideIndex + 1) % totalSlides;
+            };
+
+            // Start the slider
+            updateHeroSlider(); // Show the first slide immediately
+            // Set an interval to change the slide periodically
+            setInterval(updateHeroSlider, slideInterval);
+        }
+    }
+    
 });
