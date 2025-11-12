@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBudd | Book a Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #111;
+        }
+
+        /* === Hero Section === */
+        section.hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 auto;
+            padding: 60px 0;
+            background: url("./public/first-section-bg.svg");
+            background-position: right;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            color: #546375;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .hero-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .hero-form input {
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 2px solid #ff4b2b;
+            border-radius: 5px;
+            outline: none;
+            width: 100%;
+        }
+
+        .hero-form input::placeholder {
+            color: #aaa;
+        }
+
+        .error-text {
+            color: #fff;
+            background: #ff4b2b;
+            font-size: 0.85rem;
+            padding: 4px 8px;
+            border-radius: 3px;
+            width: fit-content;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ff4b2b;
+            color: #fff;
+            border: none;
+            padding: 14px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff6a4b;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 800px;
+            width: 100%;
+            height: auto;
+        }
+        section.stats {
+            padding: 60px 0 100px;
+            background: url("./public/second-section-bg.svg");
+            background-position: left;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        section.stats {
+            text-align: center;
+        }
+
+        section.fitness-software {
+            text-align: center;
+        }
+        h2 {
+            font-size: 2.6rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: #0b1220;
+        }
+
+        .lead {
+            color: #6b7785;
+            margin-bottom: 44px;
+            font-size: 1rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 40px;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 42px;
+            padding: 20px 10px;
+        }
+
+        .stat-item {
+            flex: 1;
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 18px;
+        }
+
+        .stat-value {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: #0b1220;
+            margin-bottom: 8px;
+        }
+
+        .stat-caption {
+            color: #6b7785;
+            font-size: 0.95rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #0b0b0b;
+            color: #fff;
+            padding: 14px 34px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity .2s;
+        }
+
+        .cta-btn:hover {
+            opacity: .9;
+        }
+
+
+        @media (max-width: 900px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-image {
+                margin-top: 40px;
+                border-radius: 10px;
+            }
+
+            .hero-form input {
+                width: 100%;
+            }
+
+            .stats-grid {
+                flex-direction: column;
+                gap: 28px;
+            }
+
+            .stat-item {
+                max-width: 100%;
+            }
+
+            .image-grid {
+                flex-direction: column;
+            }
+        }
+
+        section.fitness-software {
+            padding: 60px 0 100px;
+        }
+
+        .image-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .image-grid img {
+            width: 100%;
+            max-height: 500px;
+            border-radius: 10px;
+        }
+
+        section.features {
+            background: #f9fafb;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+
+
+        .features-grid {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px 40px;
+            justify-items: center;
+        }
+
+        .feature-item {
+            max-width: 300px;
+        }
+
+        .feature-item img {
+            width: 100%;
+            max-width: 220px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .favorite-apps-grid {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            text-align: left;
+        }
+
+        .favorite-apps-grid img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .favorite-apps-grid {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+        }
+
+        .favorite-apps {
+            background: #ffff;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .pricing {
+            background: #e2e8f0;
+            padding-top: 100px;
+            overflow: hidden;
+        }
+
+        .pricing-grid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .pricing-grid img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+        }
+
+        .pricing-content {
+            text-align: left;
+        }
+
+        @media (max-width: 900px) {
+            .pricing-grid {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .pricing-content {
+                text-align: center;
+            }
+        }
+
+        .coach {
+            background: #ffff;
+            padding: 100px 0;
+        }
+
+        .cta-section {
+            background: #f7f59a;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: #0b1220;
+            margin-bottom: 16px;
+        }
+
+        .cta-section .lead {
+            color: #6b7785;
+            margin-bottom: 40px;
+        }
+
+        .cta-section .cta-btn {
+            margin-bottom: 20px;
+        }
+
+        .cta-disclaimer {
+            color: #6b7785;
+            font-size: 0.9rem;
+        }
+
+        .helping-hand {
+            background: #fff;
+            padding: 100px 0;
+        }
+
+        .helping-hand-grid {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .helping-hand-content {
+            text-align: left;
+        }
+
+        .helping-hand-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .helping-hand-content p {
+            margin-bottom: 30px;
+        }
+
+        .helping-hand-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .helping-hand-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .helping-hand-list li::before {
+            content: '•';
+            color: #ff4b2b;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .helping-hand img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .helping-hand-grid {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .helping-hand-content {
+                text-align: center;
+            }
+        }
+
+        .facebook-community {
+            background: #2563eb;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .facebook-community h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .facebook-community p {
+            color: white;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .trainer-avatars {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .trainer-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        @media (max-width: 900px) {
+            .trainer-avatars {
+                gap: 15px;
+            }
+            
+            .trainer-avatar {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+        <!-- Header section -->
+    <header class="nav-bar">
+        <div class="container nav-container">
+            <img src="img/logo white theme.png" alt="App Studio Mockup" class="fb-logo">
+
+            <nav class="nav-menu-desktop" id="desktop-menu">
+                <ul class="nav-list">
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-dropdown-toggle">Business Types <span class="dropdown-icon">▼</span></a>
+                        <ul class="dropdown-list">
+                            <li><a href="personal-trainer-page.html">Personal Trainer</a></li>
+                            <li><a href="fitness-app-gym.html">Gym</a></li>
+                            <li><a href="fitness-studio-software-page.html">Fitness Studio</a></li>
+                            <li><a href="nutrition-coaching-software-page.html">Nutritionist</a></li>
+                            <li><a href="yoga-studio-page.html">Yoga Trainer</a></li>
+                            <li><a href="dance-studio-page.html">Dance</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-dropdown-toggle">Features <span class="dropdown-icon">▼</span></a>
+                        <ul class="dropdown-list">
+                            <li><a href="workout-routine.html">Workout Routines</a></li>
+                            <li><a href="track-progress.html">Progress Tracking</a></li>
+                            <li><a href="#">Custom Branded App</a></li>
+                            <li><a href="#">Nutrition Plans</a></li>
+                            <li><a href="#">Automation</a></li>
+                            <li><a href="#">Video Calling</a></li>
+                            <li><a href="#">Messaging</a></li>
+                            <li><a href="#">Direct Client Payments</a></li>
+                            <li><a href="#">On-Demand</a></li>
+                            <li><a href="#">Marketing</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-dropdown-toggle">Resources <span class="dropdown-icon">▼</span></a>
+                        <ul class="dropdown-list">
+                            <li><a href="Case studies.html">Case studies</a></li>
+                            <li><a href="resources-templates.html">Templates</a></li>
+                            <li><a href="resources-e-book.html">Ebooks
+                            <li><a href="blog.html">Blog</a>
+                            <li><a href="#">Academy</a>
+                            <li><a href="#">Podcast</a>
+                            <li><a href="#">Webinars</a>
+                            <li><a href="">Help</a>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/pricing" class="nav-link">Pricing</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Login</a>
+                    </li>
+                </ul>
+            </nav>
+            <a href="#" class="main-cta-btn primary-btn-color">Book A Demo</a>
+            <button class="menu-button" id="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <!-- === HERO SECTION === -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Take your personal training skills to the world</h1>
+                <p>FitBudd is everything you need to unlock your clients' true potential and help them smash their
+                    fitness goals.</p>
+
+                <form class="hero-form">
+                    <div>
+                        <input type="text" placeholder="Name*" required>
+                        <div class="error-text">⚠️ This field is required.</div>
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Email*" required>
+                        <div class="error-text">⚠️ This field is required.</div>
+                    </div>
+                    <div>
+                        <input type="tel" placeholder="(+1) 1234567890*" required>
+                        <div class="error-text">⚠️ This field is required.</div>
+                    </div>
+                    <button class="btn" type="submit">Book a Demo</button>
+                </form>
+            </div>
+
+            <div class="hero-image">
+                <img src="./public/trainer-image-first-section.png" alt="Trainer and client image">
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <h2>Train the world and save precious hours</h2>
+            <p class="lead">Transform your clients worldwide from couch potatoes to fitness buffs. Fitness professionals
+                using FitBudd experience:</p>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <img class="stat-icon" src="./public/clients-testimonials-icon.svg" alt="time saved">
+                    <div class="stat-value">50%</div>
+                    <div class="stat-caption">Time saved on training clients</div>
+                </div>
+
+                <div class="stat-item">
+                    <img class="stat-icon" src="./public/growth-testimonials-icon.svg" alt="growth">
+                    <div class="stat-value">2X</div>
+                    <div class="stat-caption">Year-on-year growth</div>
+                </div>
+
+                <div class="stat-item">
+                    <img class="stat-icon" src="./public/revenue-testimonials-icon.svg" alt="revenue">
+                    <div class="stat-value">200%</div>
+                    <div class="stat-caption">Increase in revenue</div>
+                </div>
+            </div>
+
+            <a class="cta-btn" href="#">Start Free Trial</a>
+        </div>
+    </section>
+
+    <section class="fitness-software">
+        <div class="container">
+            <h2>Train the world and save precious hours</h2>
+            <p class="lead">Transform your clients worldwide from couch potatoes to fitness buffs. Fitness professionals
+                using FitBudd experience:</p>
+
+            <div class="image-grid">
+                <img src="./public/mobile-app-clients-image.jpg" alt="">
+                <img src="./public/website-dashboard-mockup-image.jpg" alt="">
+            </div>
+
+            <a class="cta-btn" href="#">Start Free Trial</a>
+
+        </div>
+
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Effortless coaching experience with your branded app</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <img src="./public/dynamic-workout-routine-img.png" alt="Dynamic workout routines">
+                    <h3>Dynamic workout routines</h3>
+                    <p>Deliver various workouts, including strength training, HIIT, cardio, yoga, follow-along, and
+                        more.
+                    </p>
+                </div>
+
+                <div class="feature-item">
+                    <img src="./public/dynamic-workout-routine-img.png" alt="Flexible nutrition plans">
+                    <h3>Flexible nutrition plans</h3>
+                    <p>Assign macro-based or food-based meal plans from an extensive food database instantly.</p>
+                </div>
+
+                <div class="feature-item">
+                    <img src="./public/dynamic-workout-routine-img.png" alt="Habits & lifestyle">
+                    <h3>Habits & lifestyle</h3>
+                    <p>Assist your clients in forming positive habits with habit trackers and smart watch integrations.
+                    </p>
+                </div>
+
+                <div class="feature-item">
+                    <img src="./public/dynamic-workout-routine-img.png" alt="Video calling">
+                    <h3>Video calling</h3>
+                    <p>Train your clients from the comfort of your home with one-on-one video calling.</p>
+                </div>
+
+                <div class="feature-item">
+                    <img src="./public/dynamic-workout-routine-img.png" alt="Progress tracking">
+                    <h3>Progress tracking</h3>
+                    <p>Regularly check your clients' performance through weekly check-in photos, body measurements, and
+                        activity.</p>
+                </div>
+
+                <div class="feature-item">
+                    <img src="./public/dynamic-workout-routine-img.png" alt="Interactive messaging">
+                    <h3>Interactive messaging</h3>
+                    <p>Keep your clients motivated with in-app messaging and functional tools such as broadcasts and
+                        document sharing.</p>
+                </div>
+            </div>
+            <a class="cta-btn" href="#">Start Free Trial</a>
+        </div>
+    </section>
+
+    <section class="favorite-apps">
+        <div class="container">
+            <div class="favorite-apps-grid">
+                <div>
+                    <h2>Make all your favorite apps work as one</h2>
+                    <p class="lead">Transform your clients worldwide from couch potatoes to fitness buffs. Fitness
+                        professionals
+                        using FitBudd experience:</p>
+                    <a class="cta-btn" href="#">Start Free Trial</a>
+                </div>
+                <img src="./public//favorite-apps-img.png" alt="favorite-apps-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <div class="pricing-grid">
+                <img src="./public/mobile-app-mockup-img.png" alt="Pricing">
+                <div class="pricing-content">
+                    <h2>Pay as you grow</h2>
+                    <p class="lead">Go all the way in with your branded app, or take it slow. The choice is yours.</p>
+                    <a class="cta-btn" href="#">Checkout Prices</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="coach">
+        <div class="container">
+            <div class="pricing-grid">
+                <div class="pricing-content">
+                    <h2>How coach Ben Corliss grew his fitness business by 3X with FitBudd (in Just 4 Months)</h2>
+                    <a class="cta-btn" href="#">Read more</a>
+                </div>
+                <img src="./public/coach-ben-img.png" alt="coach-ben">
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Start your 30-day free trial</h2>
+            <p class="lead">Why pay when you can start growing for FREE?</p>
+            <a class="cta-btn" href="#">Start Free Trial</a>
+            <p class="cta-disclaimer">No credit card required • Cancel anytime</p>
+        </div>
+    </section>
+
+        <section class="helping-hand">
+        <div class="container">
+            <div class="helping-hand-grid">
+                <div class="helping-hand-content">
+                    <h2>Need a helping hand?</h2>
+                    <p>Talk to your dedicated success manager!</p>
+                    <ul class="helping-hand-list">
+                        <li>Avoid the stress of DIY</li>
+                        <li>Set up your account faster</li>
+                        <li>Use FitBudd like a pro</li>
+                    </ul>
+                    <a class="cta-btn" href="#">Start Free Trial</a>
+                </div>
+                <img src="./public/helping-hand-img.png" alt="Success manager">
+            </div>
+        </div>
+    </section>
+
+    <section class="facebook-community">
+        <div class="container">
+            <h2>Join our Facebook community!</h2>
+            <p>Connect with like-minded personal trainers and coaches worldwide, share tips and advice, and gain access to industry knowledge and resources.</p>
+            <div class="trainer-avatars">
+                <img class="trainer-avatar" src="./public/coach-ben-img.png" alt="Trainer 1">
+                <img class="trainer-avatar" src="./public/coach-ben-img.png" alt="Trainer 2">
+                <img class="trainer-avatar" src="./public/coach-ben-img.png" alt="Trainer 3">
+                <img class="trainer-avatar" src="./public/coach-ben-img.png" alt="Trainer 4">
+                <img class="trainer-avatar" src="./public/coach-ben-img.png" alt="Trainer 5">
+                <img class="trainer-avatar" src="./public/coach-ben-img.png" alt="Trainer 6">
+                <img class="trainer-avatar" src="./public/coach-ben-img.png" alt="Trainer 7">
+            </div>
+            <a class="cta-btn" href="#">Join For Free</a>
+        </div>
+    </section>
+
+
+    <div class="footer">
+        <div class="max-size">
+
+            <div class="as-seen">
+                <p class="paragraph-19">As seen in</p>
+                <div id="w-node-_96487e7f-6fdb-64f2-0f67-61ea1673f92b-1673f927" class="div-block-90">
+                    <img src="https://cdn.prod.website-files.com/61711827199c39768e329c82/6527ba55100b7faa4f4c3587_forbes-logo.svg"
+                        loading="lazy" alt="Forbes logo" class="image-142">
+                    <img src="https://cdn.prod.website-files.com/61711827199c39768e329c82/6527ba9f8b6c10a93e070702_vccircle.svg"
+                        loading="lazy" alt="VCCircle logo" class="image-143">
+                    <img src="https://cdn.prod.website-files.com/61711827199c39768e329c82/6527baba100b7faa4f4cc97b_inc42.svg"
+                        loading="lazy" alt="Inc42 logo" class="image-144">
+                    <img src="https://cdn.prod.website-files.com/61711827199c39768e329c82/6527bacb6baf3862a6891a6c_business-insider.svg"
+                        loading="lazy" alt="Business Insider logo" class="image-145">
+                </div>
+            </div>
+
+            <div class="footer-flex-container footer-new">
+
+                <div class="footer-logo-div footer-new">
+                    <a href="/index.html" aria-current="page" class="footer-logo-link w--current">
+                        <img src="img/logo dark theme.png"
+                            alt="Fitness & Wellness logo" class="footer-image">
+                    </a>
+
+                    <div class="social-icons">
+                        <a rel="nofollow" href="#" class="w-inline-block"><img
+                                src="https://cdn.prod.website-files.com/61711827199c39768e329c82/61791a8e24182b2af90d5f6b_u_instagram.svg"
+                                loading="lazy" alt="insta-icon" width="24" class="social-icon-image"></a>
+                        <a rel="nofollow" href="#"
+                            class="link-block-6 w-inline-block"><img
+                                src="https://cdn.prod.website-files.com/61711827199c39768e329c82/61791a91b9172cf80d58fb14_u_facebook-f.svg"
+                                loading="lazy" width="24" alt="facebook-icon" class="social-icon-image"></a>
+                        <a rel="nofollow" href="#"
+                            class="tiktok w-inline-block"><img
+                                src="https://cdn.prod.website-files.com/61711827199c39768e329c82/64fea47b16afe62534f91a64_tiktok%201.svg"
+                                loading="lazy" width="24" alt="" class="social-icon-image"></a>
+                        <a rel="nofollow" href="#" class="youtube w-inline-block"><img
+                                src="https://cdn.prod.website-files.com/61711827199c39768e329c82/64e83c42da492b79ffe23ebf_youtube.svg"
+                                loading="lazy" width="24" alt="" class="social-icon-image"></a>
+                    </div>
+
+                    <a rel="nofollow" href="#" target="_blank"
+                        class="w-inline-block">
+                        <img src="https://cdn.prod.website-files.com/61711827199c39768e329c82/622efbb9fc363c1d2ddefc80_Capterra%20white.webp"
+                            loading="lazy" sizes="(max-width: 960px) 100vw, 960w"
+                            srcset="https://cdn.prod.website-files.com/61711827199c39768e329c82/622efbb9fc363c1d2ddefc80_Capterra%20white-p-500.png 500w, https://cdn.prod.website-files.com/61711827199c39768e329c82/622efbb9fc363c1d2ddefc80_Capterra%20white.webp 960w"
+                            alt="" class="image-217">
+                    </a>
+                </div>
+
+                <div class="div-block-89">
+                    <div class="footer-hor-col footer-new">
+                        <a href="index.html" aria-current="page" class="footer-link main w--current">Home</a>
+                        <a href="#" class="footer-link main">Pricing</a>
+                        <a href="blog.html" class="footer-link main">Blog</a>
+                        <a href="#" class="footer-link main">Refer a Coach</a>
+                        <a href="#"
+                            class="footer-link main zero-padding">Refer a Gym</a>
+                    </div>
+                    <div class="footer-col-div footer-new">
+                        <p class="footer-heading">Product</p>
+                        <a href="#" class="footer-link">Login</a>
+                        <a href="#" class="footer-link">Client iOS App</a>
+                        <a href="#"
+                            class="footer-link">Client Android App</a>
+                        <a href="#" class="footer-link">Help Center</a>
+                    </div>
+                    <div class="footer-col-div footer-new space-footer">
+                        <p class="footer-heading">Company</p>
+                        <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
+                        <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
+                        <a href="#" class="footer-link">Contact</a>
+                    </div>
+                    <div class="footer-col-div footer-new">
+                        <p class="footer-heading"><strong>Fitness App for?</strong></p>
+                        <a href="personal-trainer-page.html" class="footer-link">Personal
+                            Trainer</a>
+                        <a href="yoga-studio-page.html" class="footer-link">Yoga
+                            Trainers</a>
+                        <a href="dance-studio-page.html" class="footer-link">Dance</a>
+                        <a href="fitness-app-gym.html" class="footer-link">Fitness Studio</a>
+                        <a href="nutrition-coaching-software-page.html"
+                            class="footer-link">Nutritionist</a>
+                        <a href="#" class="footer-link">Gym Coaches</a>
+                        <a href="fitness-influencer-page.html" class="footer-link">Fitness
+                            Influencers</a>
+                    </div>
+                    <div class="footer-col-div footer-new">
+                        <a href="#" class="w-inline-block">
+                            <p class="footer-heading">Resources</p>
+                        </a>
+                        <a href="resources-e-book.html" class="footer-link">Ebooks</a>
+                        <a href="#" class="footer-link">Webinars</a>
+                        <a href="#" class="footer-link">Academy</a>
+                        <a href="resources-templates.html" class="footer-link">Templates</a>
+                        <a href="Case studies.html" class="footer-link">Case Studies</a>
+                    </div>
+                    <div class="footer-col-div footer-new">
+                        <p class="footer-heading"><strong>Calculators</strong></p>
+                        <a href="#" class="footer-link">Body Fat
+                            Calculator</a>
+                        <a href="#" class="footer-link">Army
+                            Body Fat Calculator</a>
+                        <a href="#" class="footer-link">Lean
+                            Body Mass Calculator</a>
+                        <a href="#" class="footer-link">Total Daily Energy
+                            Expenditure</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright-text">© 2025 Fitness & Wellness, Inc. All rights reserved.</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
