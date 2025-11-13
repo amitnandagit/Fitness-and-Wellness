@@ -3971,6 +3971,7 @@ section.fitness-software {
     }
 
     .nav-bar a.main-cta-btn.primary-btn-color{
+        display: none;
         font-size: 14px;
         width: auto;
     }
