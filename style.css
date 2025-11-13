@@ -4184,6 +4184,6 @@ section.fitness-software {
   }
 }
 
-.testimonial-swiper.swiper-wrapper {
+.testimonial-swiper .swiper-wrapper {
     padding-bottom: 50px;
 }
