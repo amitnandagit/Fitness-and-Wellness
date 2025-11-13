@@ -4183,3 +4183,7 @@ section.fitness-software {
     flex-shrink: 0;
   }
 }
+
+.testimonial-swiper.swiper-wrapper {
+    padding-bottom: 50px;
+}
